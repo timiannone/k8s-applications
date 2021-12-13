@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tim-deployment-alpine1
+  namespace: ingress-nginx2
+  labels:
+    app: tim-app-alpine1
+    env: dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tim-app-alpine1
+  template:
+    metadata:
+      labels:
+        app: tim-app-alpine1
+    spec:
+      containers:
+      - name: tim-container-alpine1     
+        image: nginxdemos/hello:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+#
+#
+#
+#                                           https://github.com/paulbouwer/hello-kubernetes
+#      - name: tim-container-alpine1     
+#        image: paulbouwer/hello-kubernetes:1.9
+#        imagePullPolicy: IfNotPresent
+#        command: ["/bin/sh"]   
+#
+#        args: ["-c", "ls -lha; while true; do echo helloalpine; sleep 1440;done"]
+#        ports:
+#        - containerPort: 8080
