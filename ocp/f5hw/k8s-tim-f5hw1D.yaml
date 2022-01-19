@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tim-deployment-f5hw
+  namespace: tim-ns3
+  labels:
+    app: tim-app-f5hw
+    env: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tim-app-f5hw
+  template:
+    metadata:
+      labels:
+        app: tim-app-f5hw
+    spec:
+      affinity:
+        podAntiAffinity:                                 
+          requiredDuringSchedulingIgnoredDuringExecution:   
+          - topologyKey: kubernetes.io/hostname     
+            labelSelector:                               
+              matchLabels:                               
+                app: tim-app-f5hw
+      containers:
+      - name: tim-container-f5hw     
+        image: f5devcentral/f5-hello-world:develop 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+triggers:
+  - type: "ImageChange"
+    imageChangeParams:
+      automatic: true 
+      from:
+        kind: "ImageStreamTag"
+        name: "f5hw-develop"
+        namespace: "tim-ns3"
+      containerNames:
+        - "tim-container-f5hw"
+#
+#
+#
+#                                           https://github.com/paulbouwer/hello-kubernetes
+#      - name: tim-container-f5hw     
+#        image: paulbouwer/hello-kubernetes:1.9
+#        imagePullPolicy: IfNotPresent
+#        command: ["/bin/sh"]   
+#
+#        args: ["-c", "ls -lha; while true; do echo helloalpine; sleep 1440;done"]
+#        ports:
+#        - containerPort: 8080
+
+#        command: ["/bin/sh"]
+#        args: ["-c", "ls -lha; service apache2 restart; service apache2 status; while true; do echo hello; sleep 1440;done"]
+
+
+

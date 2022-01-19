@@ -1,0 +1,18 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: tim-imagestream-f5hw
+  labels:
+    app: tim-app-f5hw
+    env: dev  
+  namespace: tim-ns3
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - name: "f5hw-develop"
+    from:
+      kind: DockerImage
+      name: f5devcentral/f5-hello-world:develop
+    referencePolicy:
+      type: Source
