@@ -1,6 +1,0 @@
-apiVersion: project.openshift.io/v1
-description: "tim-ns3"
-displayName: tim-ns3
-kind: ProjectRequest
-metadata:
-    name: tim-ns3
