@@ -5,7 +5,7 @@ metadata:
   namespace: tim-ns3
   labels:
     app: tim-app-f5hw
-    env: dev
+    env: uat
 spec:
   replicas: 3
   selector:
