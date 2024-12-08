@@ -29,16 +29,6 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
-triggers:
-  - type: "ImageChange"
-    imageChangeParams:
-      automatic: true 
-      from:
-        kind: "ImageStreamTag"
-        name: "f5hw-develop"
-        namespace: "tim-ns3"
-      containerNames:
-        - "tim-container-f5hw"
 #
 #
 #

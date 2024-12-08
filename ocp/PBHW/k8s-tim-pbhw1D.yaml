@@ -29,16 +29,6 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
-triggers:
-  - type: "ImageChange"
-    imageChangeParams:
-      automatic: true 
-      from:
-        kind: "ImageStreamTag"
-        name: "pbhw:1.10.1"
-        namespace: "tim-ns1"
-      containerNames:
-        - "tim-container-pbhw"
 #  
 #
 #
