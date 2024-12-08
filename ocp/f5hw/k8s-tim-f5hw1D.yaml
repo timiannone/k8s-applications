@@ -7,7 +7,7 @@ metadata:
     app: tim-app-f5hw
     env: dev
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: tim-app-f5hw
@@ -29,6 +29,16 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
+triggers:
+  - type: "ImageChange"
+    imageChangeParams:
+      automatic: true 
+      from:
+        kind: "ImageStreamTag"
+        name: "f5hw-develop"
+        namespace: "tim-ns3"
+      containerNames:
+        - "tim-container-f5hw"
 #
 #
 #

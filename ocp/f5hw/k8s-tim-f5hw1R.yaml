@@ -1,0 +1,18 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: tim-service-f5hw
+  namespace: tim-ns3
+  labels:
+    app: tim-app-f5hw
+  annotations:
+    openshift.io/host.generated: 'true'
+spec:
+  host: tim-service-f5hw-tim-ns3.apps.ocpon1.4nrocket.net
+  to:
+    kind: Service
+    name: tim-service-f5hw
+    weight: 100
+  port:
+    targetPort: http
+  wildcardPolicy: None
