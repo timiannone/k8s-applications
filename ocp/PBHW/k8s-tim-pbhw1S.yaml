@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tim-service-pbhw
+  namespace: tim-ns1
+  labels:
+    app: tim-app-pbhw
+spec:
+  type: ClusterIP
+  selector:
+    app: tim-app-pbhw
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+#
+# NODEPORT   = PORT USED EXTERNALLY, LIKE IN THE BROWSER OR DNS
+# PORT       = PORT USED INTERNALLY,
+# TARGETPORT = PORT THAT CONTAINER IS LISTENING ON. 
+#

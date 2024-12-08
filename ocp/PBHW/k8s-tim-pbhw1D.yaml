@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tim-deployment-pbhw
+  namespace: tim-ns1
+  labels:
+    app: tim-app-pbhw
+    env: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tim-app-pbhw
+  template:
+    metadata:
+      labels:
+        app: tim-app-pbhw
+    spec:
+      affinity:
+        podAntiAffinity:                                 
+          requiredDuringSchedulingIgnoredDuringExecution:   
+          - topologyKey: kubernetes.io/hostname     
+            labelSelector:                               
+              matchLabels:                               
+                app: tim-app-pbhw
+      containers:
+      - name: tim-container-pbhw     
+        image: docker.io/paulbouwer/hello-kubernetes:1.10.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+triggers:
+  - type: "ImageChange"
+    imageChangeParams:
+      automatic: true 
+      from:
+        kind: "ImageStreamTag"
+        name: "pbhw:1.10.1"
+        namespace: "tim-ns1"
+      containerNames:
+        - "tim-container-pbhw"
+#  
+#
+#
+#                                           https://github.com/paulbouwer/hello-kubernetes
+#      - name: tim-container-pbhw     
+#        image: paulbouwer/hello-kubernetes:1.9
+#        imagePullPolicy: IfNotPresent
+#        command: ["/bin/sh"]   
+#
+#        args: ["-c", "ls -lha; while true; do echo helloalpine; sleep 1440;done"]
+#        ports:
+#        - containerPort: 8080
+
+#        command: ["/bin/sh"]
+#        args: ["-c", "ls -lha; service apache2 restart; service apache2 status; while true; do echo hello; sleep 1440;done"]
+
+
+
