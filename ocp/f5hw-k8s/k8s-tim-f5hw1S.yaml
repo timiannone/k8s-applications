@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tim-service-f5hw
+  namespace: ingress-nginx2
+  labels:
+    app: tim-app-f5hw
+spec:
+  type: ClusterIP
+  selector:
+    app: tim-app-f5hw
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tim-ingress-f5hw
+  namespace: ingress-nginx2
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+#    kubernetes.io/ingressClassName: "ingress-nginx2"
+    kubernetes.io/ingress.class: "nginx2"
+#
+#
+# this ingress was assigned 220, 220 is 'vmu' from DNS
+# kubectl get svc -n ingress-nginx
+# 
+#
+spec:
+  rules:
+    - host: "vmw.4nrocket.com"
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/f5hw"
+          backend:
+            service:
+              name: tim-service-f5hw
+              port:
+                number: 80

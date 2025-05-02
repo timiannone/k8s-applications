@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tim-deployment-f5hw
+  namespace: ingress-nginx2
+  labels:
+    app: tim-app-f5hw
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tim-app-f5hw
+  template:
+    metadata:
+      labels:
+        app: tim-app-f5hw
+    spec:
+      containers:
+      - name: tim-container-f5hw     
+        image: f5devcentral/f5-hello-world:develop 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+#
+#
+#
+#                                           https://github.com/paulbouwer/hello-kubernetes
+#      - name: tim-container-alpine1     
+#        image: paulbouwer/hello-kubernetes:1.9
+#        imagePullPolicy: IfNotPresent
+#        command: ["/bin/sh"]   
+#
+#        args: ["-c", "ls -lha; while true; do echo helloalpine; sleep 1440;done"]
+#        ports:
+#        - containerPort: 8080
