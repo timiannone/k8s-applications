@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tim-deployment-tomcat1
+  namespace: ingress-nginx3
+  labels:
+    app: tim-app-tomcat1
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tim-app-tomcat1
+  template:
+    metadata:
+      labels:
+        app: tim-app-tomcat1
+#
+    spec:
+      containers:
+      - name: tim-container-tomcat1     
+#
+        image: vm5.4nrocket.net:5002/tim_nexus/tomcat9:v2.0
+#
+        imagePullPolicy: IfNotPresent
+#        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+#
+#      imagePullSecrets:
+#      - name: nexus-pull-secret
+#
+##-------------------------------------------------------
+#        env:
+#          - name: DOCKER_REGISTRY
+#            value: vm5.4nrocket.net:5002
+#
+#        volumeMounts:
+#          - name: ca-certs
+#            mountPath: /etc/ssl/certs
+#
+#      volumes:
+#        - name: ca-certs
+#          secret:
+#            secretName: nexus-ca-certs
+#            items:
+#              - key: 4nrocket.net.ca
+#                path: 4nrocket.net.ca
+#
+#
+#
+#
+#                                           https://github.com/paulbouwer/hello-kubernetes
+#      - name: tim-container-tomcat1     
+#        image: paulbouwer/hello-kubernetes:1.9
+#        imagePullPolicy: IfNotPresent
+#        command: ["/bin/sh"]   
+#
+#        args: ["-c", "ls -lha; while true; do echo hellotomcat; sleep 1440;done"]
+#        ports:
+#        - containerPort: 8080

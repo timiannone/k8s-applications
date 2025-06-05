@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tim-ingress-tomcat1
+  namespace: ingress-nginx3
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+    # Set the value to the ingress class of the new NGINX ingress controller.
+    #kubernetes.io/ingress.class: "nginx"
+#
+# this ingress was assigned 220, 220 is 'vmu' from DNS
+# kubectl get svc -n ingress-nginx
+# 
+#
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "vmx.4nrocket.net"
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: tim-service-tomcat1
+              port:
+                number: 80
