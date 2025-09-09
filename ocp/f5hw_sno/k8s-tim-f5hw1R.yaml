@@ -8,7 +8,7 @@ metadata:
   annotations:
     openshift.io/host.generated: 'true'
 spec:
-  host: tim-service-f5hw-tim-ns3.apps.ocp22.4nrocket.com
+  host: tim-service-f5hw-tim-ns3.apps.sno2.4nrocket.com
   to:
     kind: Service
     name: tim-service-f5hw
