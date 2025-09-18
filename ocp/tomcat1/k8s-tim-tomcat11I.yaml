@@ -5,7 +5,7 @@ metadata:
   namespace: ingress-nginx3
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: "nginx3"
     # Set the value to the ingress class of the new NGINX ingress controller.
     #kubernetes.io/ingress.class: "nginx"
 #
@@ -14,9 +14,9 @@ metadata:
 # 
 #
 spec:
-  ingressClassName: nginx
+#  ingressClassName: nginx3     leave commented!   URL= http://vmx.4nrocket.io/hwbatch
   rules:
-    - host: "vmx.4nrocket.net"
+    - host: "vmx.4nrocket.io"
       http:
         paths:
         - pathType: Prefix

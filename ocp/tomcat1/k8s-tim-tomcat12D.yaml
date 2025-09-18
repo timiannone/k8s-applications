@@ -20,7 +20,8 @@ spec:
       containers:
       - name: tim-container-tomcat1     
 #
-        image: vm5.4nrocket.net:5002/tim_nexus/tomcat9:v2.0
+#        image: vm5.4nrocket.net:5002/tim_nexus/tomcat9:v2.0
+        image: quay.4nrocket.net/openshiftorg/openshift-images/tomcat_hwbatch:v1.0
 #
         imagePullPolicy: IfNotPresent
 #        imagePullPolicy: Always
