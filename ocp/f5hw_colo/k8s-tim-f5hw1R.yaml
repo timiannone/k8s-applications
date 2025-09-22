@@ -8,11 +8,12 @@ metadata:
   annotations:
     openshift.io/host.generated: 'true'
 spec:
-  host: tim-service-f5hw-tim-ns3.apps.ocp22.4nrocket.com
+  host: tim-service-f5hw-tim-ns3.apps.oeqnt.hcscint.net
   to:
     kind: Service
     name: tim-service-f5hw
     weight: 100
   port:
     targetPort: http
+
   wildcardPolicy: None
