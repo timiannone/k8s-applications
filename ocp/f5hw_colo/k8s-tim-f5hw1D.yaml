@@ -25,7 +25,7 @@ spec:
                 app: tim-app-f5hw
       containers:
       - name: tim-container-f5hw     
-        image: quay.io/i336964_hcsc/f5-hello-world/f5-hello-world:develop
+        image: quay.io/i336964_hcsc/f5-hello-world:develop
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -44,6 +44,7 @@ spec:
 
 #        command: ["/bin/sh"]
 #        args: ["-c", "ls -lha; service apache2 restart; service apache2 status; while true; do echo hello; sleep 1440;done"]
+
 
 
 
